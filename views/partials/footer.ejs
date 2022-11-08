@@ -1,0 +1,19 @@
+<footer id="social">
+  <div class="container">
+    <h2 title_="Social Media" class="reveal">Social Media</h2>
+
+    <% for(_link of links) { %>
+    <div class="link reveal">
+      <img src="/img/linkImages/<%= _link.link_image %> " alt="" />
+      <h3><%= _link.link_username %></h3>
+      <p><%= _link.link_description %></p>
+      <a target="_blank" href="<%= _link.link_url %>" class="youtube">
+        <%= _link.link_name %>
+      </a>
+    </div>
+    <% } %>
+  </div>
+</footer>
+
+<script src="/js/nav.js"></script>
+<script type="module" src="/js/main.js"></script>

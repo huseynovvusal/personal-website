@@ -1,0 +1,38 @@
+#social {
+  overflow: hidden;
+
+  .container {
+    .link {
+      margin: 5rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      img {
+        width: 30%;
+        margin-bottom: 1rem;
+        transition: 300ms ease-in-out;
+
+        @media screen and(min-width:768px) {
+          width: 20%;
+        }
+        @media screen and(min-width:1024px) {
+          width: 10%;
+        }
+      }
+
+      h3 {
+        margin-bottom: 1rem;
+        color: $dark;
+        font-size: 1.25rem;
+      }
+
+      p {
+        margin-bottom: 1rem;
+        color: $gray;
+      }
+    }
+  }
+}

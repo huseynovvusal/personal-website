@@ -1,0 +1,23 @@
+<% if(success != '' || error != ''){ %>
+<div class="alert">
+  <% if(error != ''){ %>
+  <i class="fa-solid fa-circle-xmark red"></i>
+  <span class="message"><%= error %> </span>
+  <% } else { %>
+  <i class="fa-solid fa-circle-check green"></i>
+  <span class="message"><%= success %> </span>
+  <% } %>
+</div>
+
+<script>
+  const alertElement = document.querySelector(".alert");
+
+  setTimeout(() => {
+    alertElement.classList.add("active");
+  }, 300);
+
+  setTimeout(() => {
+    alertElement.classList.remove("active");
+  }, 5000);
+</script>
+<% } %>

@@ -1,0 +1,105 @@
+#login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .container-s {
+    display: inline-block;
+    max-width: 500px;
+    width: 100%;
+    padding: 0 1rem;
+
+    .bottom {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      span {
+        color: $blue;
+
+        &.red {
+          color: $red;
+        }
+      }
+    }
+
+    h2 {
+      text-align: center;
+      padding-bottom: 1rem;
+      color: $blue;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+
+    .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    a {
+      color: $blue;
+      font-weight: 300;
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      div {
+        display: flex;
+        flex-direction: column;
+
+        button {
+          align-self: flex-start;
+        }
+      }
+
+      input {
+        margin: 0.5rem 0;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        border: 1px solid $blue;
+        outline: none;
+        color: $dark;
+        font-size: 1rem;
+        font-family: "Poppins", sans-serif;
+
+        &[type="file"] {
+          resize: none;
+        }
+
+        &::file-selector-button {
+          background-color: $blue;
+          border: none;
+          outline: none;
+          color: $white;
+          padding: 0.25rem 0.5rem;
+          border-radius: 0.25rem;
+          font-family: "Poppins", sans-serif;
+        }
+      }
+
+      button {
+        border: none;
+        outline: none;
+        background-color: $blue;
+        padding: 0.5rem 1rem;
+        font-weight: 400;
+        font-size: 1rem;
+        color: $white;
+        border-radius: 0.25rem;
+        margin: 1rem 0;
+        white-space: nowrap;
+        font-family: "Poppins", sans-serif;
+        cursor: pointer;
+      }
+    }
+  }
+}

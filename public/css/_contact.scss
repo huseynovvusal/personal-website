@@ -1,0 +1,62 @@
+#contact {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      margin-bottom: 3rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      @media screen and(min-width : 1024px) {
+        width: 50%;
+      }
+      @media screen and(min-width : 768px) {
+        width: 60%;
+      }
+
+      label {
+        font-size: 1.25rem;
+        font-weight: 400;
+        margin: 0.5rem 0;
+      }
+
+      input,
+      textarea,
+      button {
+        outline: none;
+        font-family: "Poppins", sans-serif;
+        padding: 0.5rem 2rem;
+        border-radius: 0.25rem;
+        border: 1px solid $dark;
+        font-size: 1rem;
+        color: $dark;
+        margin-bottom: 1rem;
+        width: 100%;
+      }
+
+      textarea {
+        resize: vertical;
+        width: 100%;
+      }
+
+      button {
+        background: none;
+        font-weight: 500;
+        transition: 300ms ease-in-out;
+        margin-top: 1rem;
+
+        &:hover {
+          background: $dark;
+          color: $white;
+        }
+      }
+    }
+  }
+}

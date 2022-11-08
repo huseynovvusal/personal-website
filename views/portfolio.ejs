@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/header.ejs") %>
+
+  <body>
+    <%- include("./partials/nav.ejs") %>
+
+    <section id="home">
+      <div class="container">
+        <h1>Portfolio</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+
+        <svg
+          viewBox="0 0 619 409"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_17_2)">
+            <path d="M82.4497 0H0L157.944 408H233L82.4497 0Z" fill="black" />
+            <path d="M308.55 0H391L233.056 408H158L308.55 0Z" fill="black" />
+            <path
+              d="M536.665 0H618.957L459.912 407.642H385L536.665 0Z"
+              fill="black" />
+            <path
+              d="M438.323 135.875H565.5L536.766 208.535H409.996L438.323 135.875Z"
+              fill="black" />
+          </g>
+          <defs>
+            <clipPath id="clip0_17_2">
+              <rect width="619" height="408" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+
+        <div class="mouse">
+          <i class="bx bx-mouse"></i>
+          <i class="bx bx-down-arrow-alt"></i>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" id="knowledge">
+      <div class="container">
+        <h2 title_="Front End">Front End</h2>
+        <div class="box">
+          <picture sub_title="HTML">
+            <img src="/img/icons/html.svg" alt="html" />
+          </picture>
+          <picture sub_title="CSS">
+            <img src="/img/icons/css.svg" alt="css" />
+          </picture>
+          <picture sub_title="Javascript">
+            <img src="/img/icons/js.svg" alt="js" />
+          </picture>
+          <picture sub_title="Bootstrap"
+            ><img src="/img/icons/bootstrap.svg" alt="bootstrap"
+          /></picture>
+          <picture sub_title="SCSS">
+            <img src="/img/icons/scss.svg" alt="scss" />
+          </picture>
+          <picture sub_title="React">
+            <img src="/img/icons/react.svg" alt="react" />
+          </picture>
+          <picture sub_title="Three.js">
+            <img src="/img/icons/three.svg" alt="three" />
+          </picture>
+        </div>
+        <h2 title_="Back End">Back End</h2>
+        <div class="box">
+          <picture sub_title="Node.js"
+            ><img src="/img/icons/nodejs.svg" alt="nodejs"
+          /></picture>
+          <picture sub_title="Express.js"
+            ><img src="/img/icons/express.svg" alt="express"
+          /></picture>
+          <picture sub_title="Json Web Token"
+            ><img src="/img/icons/jwt.svg" alt="jwt"
+          /></picture>
+          <picture sub_title="NPM"
+            ><img src="/img/icons/npm.svg" alt="npm"
+          /></picture>
+          <picture sub_title="Mongo DB"
+            ><img src="/img/icons/mongodb.svg" alt="mongodb"
+          /></picture>
+        </div>
+        <h2 title_="Game">Game</h2>
+        <div class="box">
+          <picture sub_title="C#"
+            ><img src="/img/icons/csharp.svg" alt="csharp"
+          /></picture>
+          <picture sub_title="Unity"
+            ><img src="/img/icons/unity.svg" alt="unity"
+          /></picture>
+        </div>
+        <h2 title_="Design">Design</h2>
+        <div class="box">
+          <picture sub_title="Photoshop">
+            <img src="/img/icons/photoshop.svg" alt="unity" />
+          </picture>
+          <picture sub_title="Figma"
+            ><img src="/img/icons/figma.svg" alt="figma"
+          /></picture>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" id="projects">
+      <div class="container">
+        <h2 title_="Projects">Projects</h2>
+        <p class="main">There is my projects</p>
+
+        <% for(_project of projects) { %>
+        <a class="box" href="<%= _project.project_url %>" target="_blank">
+          <img
+            src="/img/projects/<%= _project.project_image %>"
+            alt="<%= _project.project_image %>" />
+          <div class="info">
+            <h4><%= _project.project_name %></h4>
+            <p><%= _project.project_description %></p>
+          </div>
+        </a>
+        <% } %>
+      </div>
+    </section>
+
+    <%- include("./partials/footer.ejs",{links}) %>
+  </body>
+</html>

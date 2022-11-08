@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/header.ejs") %>
+
+  <body>
+    <%- include("./partials/nav.ejs") %>
+
+    <section id="home">
+      <div class="container">
+        <h1>About me</h1>
+        <p><%= descriptions[0].home_description %></p>
+
+        <svg
+          viewBox="0 0 619 409"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_17_2)">
+            <path d="M82.4497 0H0L157.944 408H233L82.4497 0Z" fill="black" />
+            <path d="M308.55 0H391L233.056 408H158L308.55 0Z" fill="black" />
+            <path
+              d="M536.665 0H618.957L459.912 407.642H385L536.665 0Z"
+              fill="black" />
+            <path
+              d="M438.323 135.875H565.5L536.766 208.535H409.996L438.323 135.875Z"
+              fill="black" />
+          </g>
+          <defs>
+            <clipPath id="clip0_17_2">
+              <rect width="619" height="408" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+
+        <div class="mouse">
+          <i class="bx bx-mouse"></i>
+          <i class="bx bx-down-arrow-alt"></i>
+        </div>
+      </div>
+    </section>
+
+    <%- include("./partials/footer.ejs",{links}) %>
+  </body>
+</html>

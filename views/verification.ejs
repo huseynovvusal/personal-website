@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/header.ejs") %>
+  <body id="login">
+    <div class="container-s">
+      <form
+        action="/admin/login/verification/otp/<%= user._id %> "
+        method="POST">
+        <h2>Verification</h2>
+        <p>Check your email, we send 4 digits verification code</p>
+
+        <div class="verification">
+          <input
+            autocomplete="off"
+            type="text"
+            name="email_verification_code"
+            required
+            maxlength="4"
+            placeholder="Enter 4 digits code" />
+          <div class="bottom">
+            <button type="submit">Check</button>
+            <span class="timer">Expires in : 01:00</span>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      const timerElement = document.querySelector(".timer");
+      const button = document.querySelector("button");
+      const input = document.querySelector("input");
+
+      time = 60;
+
+      let interval = setInterval(() => {
+        if (time == 0) {
+          input.value = "";
+          input.classList.add("disabled");
+          button.type = "button";
+          button.innerText = "Resend code";
+          button.addEventListener("click", (e) => {
+            location.reload();
+          });
+          timerElement.classList.add("red");
+
+          clearInterval(interval);
+        } else {
+          time--;
+          timerElement.textContent = `Expires in : 0${parseInt(time / 60)}:${
+            time % 60 >= 10 ? time % 60 : "0" + (time % 60)
+          }`;
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>

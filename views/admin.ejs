@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./partials/header.ejs") %>
+
+<body id="admin">
+  <%- include("./partials/error.ejs") %>
+
+  <nav class="active">
+    <div class="container-s">
+
+      <div class="top">
+        <img src="/img/profilephoto.jpg" alt="" />
+        <div class="hamburger">
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
+      <ul>
+        <li>
+          <a class="<%= link === "index" ? "active" : "" %> " href="/admin/"><i class="bx bx-home-alt-2"></i><span>Home</span></a>
+        </li>
+        <li>
+          <a class="<%= link === "messages" ? "active" : "" %> " href="/admin/messages/"><i class="bx bx-message-square"></i><span>Messages</span></a>
+        </li>
+        <li>
+          <a class="<%= link === "customize" ? "active" : "" %> " href="/admin/customize/"><i class="bx bx-edit-alt"></i><span>Customize</span></a>
+        </li>
+        <li>
+          <a class="<%= link === "blog" ? "active" : "" %> " href="/admin/blog/"><i class="bx bx-book-alt"></i><span>Blog</span></a>
+        </li>
+        <li>
+          <a class="<%= link === "portfolio" ? "active" : "" %> " href="/admin/portfolio/"><i class="bx bx-user"></i><span>Portfolio</span></a>
+        </li>
+        <li>
+          <a class="<%= link === "videos" ? "active" : "" %> " href="/admin/videos/"><i class="bx bx-video"></i><span>Videos</span></a>
+        </li>
+        <li>
+          <a class="<%= link === "settings" ? "active" : "" %> " href="/admin/settings/"><i class="bx bx-cog"></i><span>Settings</span></a>
+        </li>
+      </ul>
+
+      <a class="logout" href="/admin/logout/"><i class="bx bx-exit"></i><span>Log out</span></a>
+    </div>
+  </nav>
+
+  <section id="content">
+    <div class="container-s">
+      <% if(link == "messages") { %>
+      <section id="messages">
+        <h3>Messages</h3>
+        <% if(contacts.length != 0) { %>
+
+        <% for(contact of contacts) { %>
+        <div class="message">
+          <h3><span><%= contact.name %> </span>
+            <form method="POST" action="<%= `/admin/messages/delete/${contact._id}` %>"><button type="submit"><span class="remove-btn">Delete</span></button></form>
+          </h3>
+          <p class="email"><%= contact.email %> </p>
+          <p><%= contact.message %></p>
+        </div>
+        <% } %>
+        <% } else { %>
+        <p>There is no message.</p>
+        <% } %>
+      </section>
+      <% } %>
+
+      <% if(link == "customize") { %>
+      <section id="customize">
+        <h3>Social Media Links</h3>
+
+        <details>
+          <summary><i class='bx bx-chevron-right'></i> Current links</summary>
+          <div>
+            <% for(_link of links) { %>
+            <div class="link">
+              <h5 class="link_name"><%= _link.link_name %></h5>
+              <form action="/admin/customize/link/delete/<%= _link._id %>" method="POST"><button class="remove-btn">Delete</button></form>
+            </div>
+            <% } %>
+          </div>
+        </details>
+
+        <form class="form" action="/admin/customize/link" method="POST" enctype="multipart/form-data">
+          <h4>Add new link</h4>
+          <input type="file" name="link_image" accept=".svg" required>
+          <input placeholder="Link name" type="text" name="link_name" required>
+          <input placeholder="Username" type="text" name="link_username" required>
+          <textarea required placeholder="Description" type="text" name="link_description" required></textarea>
+          <input type="text" placeholder="URL" type="text" name="link_url" required></input>
+          <button type="submit">Add</button>
+        </form>
+        <form class="form" action="/admin/customize/description" method="POST">
+          <h3>Home Page Description</h3>
+          <textarea type="text" name="home_description" id="home_description"><%= descriptions[0].home_description %></textarea>
+          <h3>About Page Description</h3>
+          <textarea type="text" name="about_description" id="about_description"><%= descriptions[0].about_description %></textarea>
+          <button type="submit">Save</button>
+        </form>
+      </section>
+      <% } %>
+
+      <% if(link == "portfolio") { %>
+      <section id="portfolio">
+        <h3>Portfolio</h3>
+
+        <details>
+          <summary><i class='bx bx-chevron-right'></i> Projects</summary>
+          <div>
+            <% for(_project of projects) { %>
+            <div class="link">
+              <h5 class="link_name"><%= _project.project_name %></h5>
+              <form action="/admin/customize/project/delete/<%= _project._id %>" method="POST"><button class="remove-btn">Delete</button></form>
+            </div>
+            <% } %>
+          </div>
+        </details>
+
+        <form class="form" action="/admin/customize/portfolio/" method="POST" enctype="multipart/form-data">
+          <h4>Add new project</h4>
+
+          <input name="project_image" type="file" required>
+          <input name="project_name" type="text" placeholder="Project Name" required>
+          <input name="project_description" type="text" placeholder="Project Description" required>
+          <input name="project_url" type="text" placeholder="Project URL" required>
+          <button type="submit">Add</button>
+        </form>
+      </section>
+      <% } %>
+
+      <% if(link == "blog") { %>
+      <section id="blog">
+        <h3>Blog</h3>
+
+        <details>
+          <summary><i class='bx bx-chevron-right'></i> Blogs</summary>
+          <div>
+            <% for(_blog of blogs) { %>
+            <div class="link">
+              <h5 class="link_name"><%= _blog.blog_name %> </h5>
+              <form action="/admin/customize/blog/delete/<%= _blog._id %>  %>" method="POST"><button class="remove-btn">Delete</button></form>
+            </div>
+            <% } %>
+          </div>
+        </details>
+
+        <form class="form" action="/admin/customize/blog/" method="POST" enctype="multipart/form-data">
+          <h4>Add new project</h4>
+
+          <input name="blog_image" type="file" required>
+          <input name="blog_name" type="text" placeholder="Blog Name" required>
+          <textarea name="blog_description" type="text" placeholder="Blog Description" required></textarea>
+          <button type="submit">Add</button>
+        </form>
+      </section>
+      <% } %>
+    </div>
+  </section>
+
+
+
+
+  <script src="/js/sidebar.js"></script>
+</body>
+
+</html>

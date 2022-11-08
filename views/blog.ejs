@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/header.ejs") %>
+
+  <body>
+    <%- include("./partials/nav.ejs") %>
+
+    <section id="home">
+      <div class="container">
+        <h1>Blog</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+
+        <svg
+          viewBox="0 0 619 409"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_17_2)">
+            <path d="M82.4497 0H0L157.944 408H233L82.4497 0Z" fill="black" />
+            <path d="M308.55 0H391L233.056 408H158L308.55 0Z" fill="black" />
+            <path
+              d="M536.665 0H618.957L459.912 407.642H385L536.665 0Z"
+              fill="black" />
+            <path
+              d="M438.323 135.875H565.5L536.766 208.535H409.996L438.323 135.875Z"
+              fill="black" />
+          </g>
+          <defs>
+            <clipPath id="clip0_17_2">
+              <rect width="619" height="408" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+
+        <div class="mouse">
+          <i class="bx bx-mouse"></i>
+          <i class="bx bx-down-arrow-alt"></i>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" id="blog">
+      <div class="container">
+        <h2 title_="Blogs">Blogs</h2>
+        <p class="main">Lorem ipsum dolor sit.</p>
+
+        <% for(_blog of blogs) { %>
+          <a class="box" href="/blogs/<%= _blog._id %>" target="_blank">
+            <img src="/img/blogImages/<%= _blog.blog_image %> " alt="<%= _blog.blog_image %> " />
+            <div class="info">
+              <h4><%= _blog.blog_name %> </h4>
+              <p><%= _blog.blog_description.substring(0, 60) + '...' %></p>
+              <p class="read">Read more</p>
+            </div>
+          </a>
+        <% } %>
+      </div>
+    </section>
+
+    <%- include("./partials/footer.ejs",{links}) %>
+  </body>
+</html>
