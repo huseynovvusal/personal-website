@@ -26,6 +26,7 @@ class PageController {
   static async getContactPage(req, res) {
     const links = await Link.find({});
 
+    
     res.render("contact", {
       link: "contact",
       links: links,
