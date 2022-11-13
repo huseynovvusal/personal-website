@@ -6,6 +6,7 @@ const router = express.Router();
 // GET
 router.get("/", PageController.getIndexPage);
 router.get("/blog", PageController.getBlogPage);
+router.get("/blogs/:id", PageController.getSingleBlogPage);
 router.get("/portfolio", PageController.getPortfolioPage);
 router.get("/contact", PageController.getContactPage);
 router.get("/videos", PageController.getVideosPage);

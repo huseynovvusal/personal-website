@@ -137,7 +137,7 @@ class AdminController {
         if (same) {
           AdminController.getVerificationPage(req, res);
 
-          AdminController.postVerification(req, res, user);
+          await AdminController.postVerification(req, res, user);
         } else {
           req.flash("error", "Wrong Email or Password");
           res.redirect("/admin/login");
@@ -199,7 +199,9 @@ class AdminController {
 
   static async sendEmail(email, code) {
     const transporter = nodemailer.createTransport({
+      secure : true,
       host: "smtp.gmail.com",
+      port : 465,
       auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD,

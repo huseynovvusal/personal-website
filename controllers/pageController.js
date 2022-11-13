@@ -22,6 +22,11 @@ class PageController {
 
     res.render("blog", { link: "blog", blogs: blogs,links: links });
   }
+  static async getSingleBlogPage(req, res) {
+    const blog = await Blog.findOne({_id : req.params.id});
+
+    res.render("single-blog", { link: "blog", blog: blog });
+  }
 
   static async getContactPage(req, res) {
     const links = await Link.find({});
