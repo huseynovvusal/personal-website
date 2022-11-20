@@ -11,6 +11,9 @@ router.get("/portfolio", PageController.getPortfolioPage);
 router.get("/contact", PageController.getContactPage);
 router.get("/videos", PageController.getVideosPage);
 router.get("/about", PageController.getAboutPage);
+router.get("/courses", PageController.getCoursesPage);
+router.get("/courses/:id", PageController.getSingleCoursePage);
+
 
 // POST
 router.post("/contact", PageController.postMessage);

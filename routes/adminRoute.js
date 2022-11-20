@@ -12,6 +12,9 @@ const router = express.Router();
 
 // GET
 router.get("/", AuthMiddleware.authenticateToken, AdminController.getIndexPage);
+router.get("/courses", AuthMiddleware.authenticateToken, AdminController.getCoursesPage);
+router.post("/courses", AuthMiddleware.authenticateToken, AdminController.addCourse);
+router.post("/courses/delete/:id", AuthMiddleware.authenticateToken, AdminController.deleteCourse);
 router.get(
   "/messages",
   AuthMiddleware.authenticateToken,

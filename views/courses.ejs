@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/header.ejs") %>
+
+  <body>
+    <%- include("./partials/nav.ejs") %>
+
+    <section id="home">
+      <div class="container">
+        <h1>Courses</h1>
+        <p>Scroll down and join us</p>
+
+        <svg
+          viewBox="0 0 619 409"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_17_2)">
+            <path d="M82.4497 0H0L157.944 408H233L82.4497 0Z" fill="black" />
+            <path d="M308.55 0H391L233.056 408H158L308.55 0Z" fill="black" />
+            <path
+              d="M536.665 0H618.957L459.912 407.642H385L536.665 0Z"
+              fill="black" />
+            <path
+              d="M438.323 135.875H565.5L536.766 208.535H409.996L438.323 135.875Z"
+              fill="black" />
+          </g>
+          <defs>
+            <clipPath id="clip0_17_2">
+              <rect width="619" height="408" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+
+        <div class="mouse">
+          <i class="bx bx-mouse"></i>
+          <i class="bx bx-down-arrow-alt"></i>
+        </div>
+      </div>
+    </section>
+
+    <section id="courses">
+        <h2 title_="Courses">Courses</h2>
+        <p>If you want to join our programming lessons contact with me</p>
+       <div class="container">
+
+          <% for(_course of courses) { %>
+            <div class="course reveal">
+              <img src="/img/courseImages/<%= _course.course_image %>" alt="<%= _course.course_image %>">
+              <h3><%= _course.course_name %></h3>
+              <p><%= _course.course_details.slice(0,60) + "..." %></p>
+              <a href="/courses/<%= _course._id %>">Learn More</a>
+          </div>
+          <% } %>
+       </div>
+    </section>
+
+    <%- include("./partials/footer.ejs",{links}) %>
+  </body>
+</html>

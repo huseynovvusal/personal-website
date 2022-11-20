@@ -18,29 +18,32 @@
 
       <ul>
         <li>
-          <a class="<%= link === "index" ? "active" : "" %> " href="/admin/"><i class="bx bx-home-alt-2"></i><span>Home</span></a>
+          <a class="<%= link === "index" ? "active" : "" %> " href="/admin/"><i class="bx bx-home-alt-2"></i><span>Ev</span></a>
         </li>
         <li>
-          <a class="<%= link === "messages" ? "active" : "" %> " href="/admin/messages/"><i class="bx bx-message-square"></i><span>Messages</span></a>
+          <a class="<%= link === "messages" ? "active" : "" %> " href="/admin/messages/"><i class="bx bx-message-square"></i><span>Mesajlar</span></a>
         </li>
         <li>
-          <a class="<%= link === "customize" ? "active" : "" %> " href="/admin/customize/"><i class="bx bx-edit-alt"></i><span>Customize</span></a>
+          <a class="<%= link === "customize" ? "active" : "" %> " href="/admin/customize/"><i class="bx bx-edit-alt"></i><span>Düzəliş</span></a>
         </li>
         <li>
-          <a class="<%= link === "blog" ? "active" : "" %> " href="/admin/blog/"><i class="bx bx-book-alt"></i><span>Blog</span></a>
+          <a class="<%= link === "blog" ? "active" : "" %> " href="/admin/blog/"><i class="bx bx-book-alt"></i><span>Bloq</span></a>
         </li>
         <li>
-          <a class="<%= link === "portfolio" ? "active" : "" %> " href="/admin/portfolio/"><i class="bx bx-user"></i><span>Portfolio</span></a>
+          <a class="<%= link === "portfolio" ? "active" : "" %> " href="/admin/portfolio/"><i class="bx bx-user"></i><span>Portfel</span></a>
         </li>
         <li>
-          <a class="<%= link === "videos" ? "active" : "" %> " href="/admin/videos/"><i class="bx bx-video"></i><span>Videos</span></a>
+          <a class="<%= link === "videos" ? "active" : "" %> " href="/admin/videos/"><i class="bx bx-video"></i><span>Videolar</span></a>
         </li>
         <li>
-          <a class="<%= link === "settings" ? "active" : "" %> " href="/admin/settings/"><i class="bx bx-cog"></i><span>Settings</span></a>
+          <a class="<%= link === "courses" ? "active" : "" %> " href="/admin/courses/"><i class='bx bx-book-reader'></i><span>Kurslar</span></a>
+        </li>
+        <li>
+          <a class="<%= link === "settings" ? "active" : "" %> " href="/admin/settings/"><i class="bx bx-cog"></i><span>Ayarlar</span></a>
         </li>
       </ul>
 
-      <a class="logout" href="/admin/logout/"><i class="bx bx-exit"></i><span>Log out</span></a>
+      <a class="logout" href="/admin/logout/"><i class="bx bx-exit"></i><span>Çıxış</span></a>
     </div>
   </nav>
 
@@ -146,11 +149,38 @@
         </details>
 
         <form class="form" action="/admin/customize/blog/" method="POST" enctype="multipart/form-data">
-          <h4>Add new project</h4>
+          <h4>Add new blog</h4>
 
           <input name="blog_image" type="file" required>
           <input name="blog_name" type="text" placeholder="Blog Name" required>
           <textarea name="blog_description" type="text" placeholder="Blog Description" required></textarea>
+          <button type="submit">Add</button>
+        </form>
+      </section>
+      <% } %>
+
+      <% if(link == "courses") { %>
+      <section id="courses">
+        <h3>Courses</h3>
+
+        <details>
+          <summary><i class='bx bx-chevron-right'></i> Courses</summary>
+          <div>
+            <% for(_course of courses) { %>
+            <div class="link">
+              <h5 class="link_name"><%= _course.course_name.slice(0,10) + "..." %></h5>
+              <form action="/admin/courses/delete/<%= _course._id %>" method="POST"><button class="remove-btn">Delete</button></form>
+            </div>
+            <% } %>
+          </div>
+        </details>
+
+        <form class="form" action="/admin/courses/" method="POST" enctype="multipart/form-data">
+          <h4>Add new course</h4>
+
+          <input name="course_image" type="file" required>
+          <input name="course_name" type="text" placeholder="Course Name" required>
+          <textarea name="course_details" type="text" placeholder="Course Description" required></textarea>
           <button type="submit">Add</button>
         </form>
       </section>

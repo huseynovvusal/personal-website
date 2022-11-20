@@ -1,6 +1,8 @@
 class Reveal {
   constructor(revealPoint) {
     this.revealPoint = revealPoint;
+
+    this.reveal();
   }
 
   reveal() {

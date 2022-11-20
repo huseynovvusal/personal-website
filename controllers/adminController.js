@@ -9,6 +9,7 @@ import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
 import path from "path";
+import Course from "../models/CourseModel.js";
 
 const __dirname = path.resolve();
 
@@ -17,6 +18,22 @@ class AdminController {
     res.render("admin", {
       link: "index",
     });
+  }
+  static async getCoursesPage(req, res) {
+    try{
+
+      const courses = await Course.find({});
+
+      res.render("admin", {
+        link: "courses",
+        courses : courses
+      });
+
+    }catch (error) {
+      req.flash("error", "Xəta baş verdi");
+      res.redirect("/admin/courses");
+      console.log(error);
+    }
   }
   static async getMessagesPage(req, res) {
     try {
@@ -109,20 +126,66 @@ class AdminController {
       });
     } catch (error) {
       console.log(error);
-      res.flash("error", "Some errors occured");
+      res.flash("error", "Xəta baş verdi");
     }
   }
-  // static async createUser(req, res) {
-  //   try {
-  //     const user = await User.create(req.body);
 
-  //     console.log("user created");
-  //   } catch (error) {
-  //     if (error.code == 11000) {
-  //       console.log("This email has already been registered.");
-  //     }
-  //   }
-  // }
+/*   static async createUser(req, res) {
+    try {
+      const user = await User.create(req.body);
+
+      console.log("user created");
+    } catch (error) {
+      if (error.code == 11000) {
+        console.log("This email has already been registered.");
+      }
+    }
+  } */
+  
+  
+  static async addCourse(req,res){
+    try {
+      const course_image = req.files.course_image;
+
+      await course_image.mv(
+        `${__dirname}/public/img/courseImages/${course_image.name}`
+      );
+
+      const course = await Course.create({
+        course_image : course_image.name,
+        ...req.body
+      });
+
+      req.flash("success", `${req.body.course_name} uğurla paylaşıldı`);
+      res.redirect("/admin/courses");
+
+    } catch (error) {
+      req.flash("error", "Xəta baş verdi");
+      res.redirect("/admin/courses");
+      console.log(error);
+    }
+  }
+  static async deleteCourse(req,res){
+    try {
+      const course = await Course.findOne({_id : req.params.id});
+
+      const course_image = course.course_image;
+      const course_name = course.course_name;
+
+      fs.unlinkSync(__dirname + "/public/img/courseImages/" + course_image);
+
+      course.remove();
+
+      req.flash("success", `${course_name} uğurla silindi`);
+      res.redirect("/admin/courses");
+
+
+    } catch (error) {
+      req.flash("error", "Xəta baş verdi");
+      res.redirect("/admin/courses");
+      console.log(error);
+    }
+  }
   static async loginUser(req, res) {
     try {
       //! My Password vslh_admin(07)&._website
@@ -139,15 +202,15 @@ class AdminController {
 
           await AdminController.postVerification(req, res, user);
         } else {
-          req.flash("error", "Wrong Email or Password");
+          req.flash("error", "Yalnış Email və ya Şifrə");
           res.redirect("/admin/login");
         }
       } else {
-        req.flash("error", "Wrong Email or Password");
+        req.flash("error", "Yalnış Email və ya Şifrə");
         res.redirect("/admin/login");
       }
     } catch (error) {
-      req.flash("error", "Error ocured");
+      req.flash("error", "Xəta baş verdi");
       res.redirect("/admin/login");
     }
   }
@@ -176,16 +239,16 @@ class AdminController {
           maxAge: 100 * 60 * 60 * 24 * 3, // 1 day
         });
 
-        req.flash("success", "Logined as Admin");
+        req.flash("success", "Admin olaraq giriş olundu");
         res.redirect("/admin");
       } else {
-        req.flash("error", "Wrong verification code");
+        req.flash("error", "Yalnış doğrulama kodu");
         res.redirect("/admin/login");
       }
     } catch (error) {
       req.flash(
         "error",
-        "Please login again, your 4 digit verification is expired."
+        "Xahiş olunur yenidən cəhd edin, sizin 4 rəqəmli doğrulama kodunuzun vaxtı keçib."
       );
       req.redirect("/admin/login");
     }

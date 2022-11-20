@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/header.ejs") %>
+
+  <body>
+    <%- include("./partials/nav.ejs") %>
+
+    <section id="single-blog">
+      <div class="container">
+        <img src="/img/courseImages/<%= course.course_image %>" alt="Vusal Huseynov Kurs" />
+        <h2><%= course.course_name %></h2>
+        <p><%= course.course_details %></p>
+      </div>
+    </section>
+
+    <script src="/js/nav.js"></script>
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>

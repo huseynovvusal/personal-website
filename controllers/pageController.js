@@ -3,6 +3,7 @@ import Link from "../models/LinkModel.js";
 import Description from "../models/DescriptionModel.js";
 import Project from "../models/ProjectModel.js";
 import Blog from "../models/BlogModel.js";
+import Course from "../models/CourseModel.js";
 
 class PageController {
   static async getIndexPage(req, res) {
@@ -20,18 +21,22 @@ class PageController {
     const links = await Link.find({});
     const blogs = await Blog.find({});
 
-    res.render("blog", { link: "blog", blogs: blogs,links: links });
+    res.render("blog", { link: "blog", blogs: blogs, links: links });
   }
   static async getSingleBlogPage(req, res) {
-    const blog = await Blog.findOne({_id : req.params.id});
+    const blog = await Blog.findOne({ _id: req.params.id });
 
     res.render("single-blog", { link: "blog", blog: blog });
+  }
+  static async getSingleCoursePage(req, res) {
+    const course = await Course.findOne({ _id: req.params.id });
+
+    res.render("single-course", { link: "course", course: course });
   }
 
   static async getContactPage(req, res) {
     const links = await Link.find({});
 
-    
     res.render("contact", {
       link: "contact",
       links: links,
@@ -46,6 +51,16 @@ class PageController {
       link: "portfolio",
       links: links,
       projects: projects,
+    });
+  }
+  static async getCoursesPage(req, res) {
+    const links = await Link.find({});
+    const courses = await Course.find({});
+
+    res.render("courses", {
+      link: "courses",
+      links: links,
+      courses: courses,
     });
   }
   static async getVideosPage(req, res) {
